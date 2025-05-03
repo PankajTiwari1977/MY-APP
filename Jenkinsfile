@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        // stage('Test') {
+        //     steps {
+        //         sh 'sudo npm test -- --watchAll=false'
+        //     }
+        // }
+
         stage('Serve (optional)') {
             steps {
                 sh 'sudo npm install -g serve'
