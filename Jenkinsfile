@@ -1,11 +1,7 @@
 pipeline {
     agent any
 
-    // environment {
-    //     NODE_ENV = 'production'
-    // }
-
-    stages {
+     stages {
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -17,11 +13,15 @@ pipeline {
                 sh 'npm run build'
             }
         }
-
-        stage('Archive Build') {
+        stage('minikube docker build docker image') {
             steps {
-                archiveArtifacts artifacts: 'build/**', followSymlinks: false
+                sh 'eval $(minikube docker-env)'
+            }
+            steps {
+                sh 'docker build -t react-app:latest .
+)'
             }
         }
+        
     }
 }
