@@ -15,8 +15,12 @@ pipeline {
         }
         stage('minikube docker build docker image') {
             steps {
-                sh 'eval $(minikube docker-env)'
-                sh 'docker build -t react-app:latest .'
+                sh '''
+                    echo "Setting Docker env from Minikube"
+                    eval $(minikube docker-env) || exit 1
+                    docker info
+                    docker build -t react-app .
+                '''
             }            
         }
         stage('deploy my app') {
