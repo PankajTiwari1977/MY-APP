@@ -1,6 +1,16 @@
 pipeline {
     agent any
+    environment {
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
+    }
 
+    stages {
+        stage('Deploy to Minikube') {
+            steps {
+                sh 'kubectl apply -f deploy/react-deployment.yaml'
+            }
+        }
+    }
      stages {
         stage('Install Dependencies') {
             steps {
