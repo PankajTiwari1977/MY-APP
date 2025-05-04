@@ -16,9 +16,10 @@ pipeline {
         stage('minikube docker build docker image') {
             steps {
                 sh '''
-                    echo "Setting Docker env from Minikube"
-                    eval $(minikube docker-env) || exit 1
-                    docker info
+                    export DOCKER_TLS_VERIFY="1"
+                    export DOCKER_HOST="tcp://192.168.49.2:2376"
+                    export DOCKER_CERT_PATH="/home/pankaj/.minikube/certs"
+                    export MINIKUBE_ACTIVE_DOCKERD="minikube"
                     docker build -t react-app .
                 '''
             }            
