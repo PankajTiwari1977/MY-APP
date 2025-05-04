@@ -29,5 +29,6 @@ pipeline {
             steps {
                 sh 'kubectl apply -f deploy/react-service.yaml'
             }
+        }
     }
 }
