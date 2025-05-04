@@ -18,10 +18,16 @@ pipeline {
                 sh 'eval $(minikube docker-env)'
             }
             steps {
-                sh 'docker build -t react-app:latest .
-)'
+                sh 'docker build -t react-app:latest .'
             }
+
         }
-        
+        stage('deploy my app') {
+            steps {
+                sh 'kubectl apply -f deploy/react-deployment.yaml'
+            }
+            steps {
+                sh 'kubectl apply -f deploy/react-service.yaml'
+            }
     }
 }
