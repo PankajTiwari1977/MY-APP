@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        KUBECONFIG = "/var/lib/jenkins/.kube/config"
-    }
+
      stages {
         stage('Install Dependencies') {
             steps {
