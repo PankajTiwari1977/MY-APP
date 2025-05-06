@@ -19,8 +19,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh """
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                            docker build -t pankajdevops2403/react-app:latest .
-                            docker push pankajdevops2403/react-app:latest
+                            docker build -t pankajdevops2403/react-app:latest1 .
+                            docker push pankajdevops2403/react-app:latest1
                         """
                     }
                 }
